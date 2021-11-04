@@ -1,22 +1,31 @@
-import { StatusBar } from 'expo-status-bar';
-import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
-import Draggable from "./components/Draggable";
 
-export default function App() {
-  return (
-    <View style={styles.container}>
-      <Draggable x="-120" y="-150"/>
-      <StatusBar style="auto" />
-    </View>
-  );
+import React from 'react';
+
+import { Provider } from 'react-redux'
+import Store from './Store/configureStore'
+
+import Search from './components/Search';
+import { NavigationContainer } from '@react-navigation/native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import FilmDetail from './components/FilmDetail';
+import Grille from './components/Grille';
+import Test from './components/Test';
+
+
+const Stack = createNativeStackNavigator();
+
+const App = () => {
+    return (
+    // <Provider store={Store}>
+    //   <NavigationContainer>
+    //     <Stack.Navigator>
+    //       <Stack.Screen name="Search" component={Search} />
+    //       <Stack.Screen name="Detail" component={FilmDetail} />
+    //     </Stack.Navigator>
+    //   </NavigationContainer>
+    // </Provider>
+    <Test/>
+    )
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+export default App;
