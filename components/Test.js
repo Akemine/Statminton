@@ -1,9 +1,7 @@
 import * as React from 'react';
-import { StyleSheet, Text, View, Dimensions } from 'react-native';
+import { ImageBackground, StyleSheet, Text, View, Dimensions } from 'react-native';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import { DraxProvider, DraxView, DraxList } from 'react-native-drax';
-
-const gestureRootViewStyle = { flex: 1 };
 
 export default function Test() {
   const draggableItemList = [
@@ -273,6 +271,7 @@ export default function Test() {
   const [receivingItemList, setReceivedItemList] = React.useState(FirstReceivingItemList);
   const [dragItemMiddleList, setDragItemListMiddle] = React.useState(draggableItemList);
   
+  var sourceImage = require('../Images/terrain_1.png')
 
   function _handlePress(evt){
     console.log(`x coord = ${evt.nativeEvent.locationX}`);
@@ -330,9 +329,14 @@ export default function Test() {
   const FlatListItemSeparator = () => {
     return (<View style={styles.itemSeparator} />);
   }
+
  
   return (
-    <>
+    <ImageBackground
+        style={styles.image}
+        source={sourceImage}
+        resizeMode="cover" 
+      >
       <DraxProvider>
         <View style={styles.container}>
           <View style={styles.draxListContainer}>
@@ -341,7 +345,6 @@ export default function Test() {
               renderItemContent={DragUIComponent}
               keyExtractor={(item, index) => index.toString()}
               numColumns={4}
-              ItemSeparatorComponent={FlatListItemSeparator}
             />
           </View>
           
@@ -350,7 +353,7 @@ export default function Test() {
           </View>
         </View>
       </DraxProvider>
-    </>
+      </ImageBackground>
   );
 }
 
@@ -359,29 +362,25 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    paddingTop: 50,
-    backgroundColor: "#85C1E9"
+    paddingTop: 82
+  },
+  image: {
+    flex: 1,
+    justifyContent: "center"
   },
   receivingZone: {
-    height: (Dimensions.get('window').width / 5),
-    width: (Dimensions.get('window').width / 5),
-
-    justifyContent: 'center',
-    alignItems: 'center',
-    borderWidth: 2,
-    borderColor: "white",
-    opacity: 0.7
+    height: (Dimensions.get('window').width / 5.2),
+    width: (Dimensions.get('window').width / 5.2),
+    opacity: 0.3,
   },
   receiving: {
     borderColor: 'black',
     backgroundColor: "#2057DF",
-    borderWidth: 5,
   },
   draggableBox: {
-    width: (Dimensions.get('window').width / 5),
-    borderWidth: 2,
-    borderColor: "white",
-    height: (Dimensions.get('window').width / 5)
+    width: (Dimensions.get('window').width / 5.2),
+    height: (Dimensions.get('window').width / 5.2),
+    opacity: 0.3,
   },
   dragging: {
     opacity: 0.2,
@@ -389,13 +388,12 @@ const styles = StyleSheet.create({
   hoverDragging: {
     borderColor: 'black',
     backgroundColor: "#2057DF",
-    borderWidth: 2,
   },
   itemSeparator: {
     height: 0
   },
   draxListContainer: {
-    height: '44%'
+    height: '46%'
   },
   receivingZoneContent:{
     flex: 1,
