@@ -1,4 +1,4 @@
-const API_TOKEN = "27c7ad4b157affcb4a926b6829f05180";
+const API_TOKEN = "";
 
 export function getImageFromApi (name) {
     return 'https://image.tmdb.org/t/p/w300' + name
